@@ -1,14 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maintenance Requests</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    form {
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .status-pending {
+      color: red;
+      font-weight: bold;
+    }
+
+    .status-in-progress {
+      color: orange;
+      font-weight: bold;
+    }
+
+    .status-resolved {
+      color: green;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
 <h2>Submit Maintenance Request</h2>
 
-<form>
+<form method="post">
   <label for="item">Item Name:</label><br>
-  <input type="text" id="item" name="item"><br><br>
+  <input type="text" id="item" name="item" required><br>
 
   <label for="department">Department:</label><br>
-  <input type="text" id="department" name="department"><br><br>
+  <input type="text" id="department" name="department" required><br>
 
   <label for="issue">Issue Description:</label><br>
-  <textarea id="issue" name="issue" rows="4" cols="50"></textarea><br><br>
+  <textarea id="issue" name="issue" rows="4" required></textarea><br>
 
   <button type="submit">Submit Request</button>
 </form>
@@ -29,112 +96,115 @@
     <td>Air Conditioner</td>
     <td>Senate</td>
     <td>Not Cooling</td>
-    <td>Pending</td>
+    <td class="status-pending">Pending</td>
     <td>2025-05-05 01:15pm</td>
   </tr>
   <tr>
     <td>Ceiling Fan</td>
     <td>Senate</td>
     <td>Not Rotating</td>
-    <td>Pending</td>
+    <td class="status-pending">Pending</td>
     <td>2025-05-03 10:00am</td>
   </tr>
   <tr>
     <td>Epson Projector</td>
     <td>Senate</td>
     <td>Overheating During Use</td>
-    <td>In Progress</td>
+    <td class="status-in-progress">In Progress</td>
     <td>2025-05-01 11:00am</td>
   </tr>
   <tr>
     <td>Oxygen Cylinder</td>
-    <td>MedicalHospital</td>
+    <td>Medical Hospital</td>
     <td>Valve Leak</td>
-    <td>Resolved</td>
+    <td class="status-resolved">Resolved</td>
     <td>2025-04-28 10:45am</td>
   </tr>
   <tr>
     <td>ECG Monitor</td>
     <td>Medical Hospital</td>
     <td>Display Not Working</td>
-    <td>In Progress</td>
+    <td class="status-in-progress">In Progress</td>
     <td>2025-05-02 02:20pm</td>
   </tr>
   <tr>
     <td>Suction Machine</td>
     <td>Medical Hospital</td>
     <td>Suction Power Low</td>
-    <td>Pending</td>
+    <td class="status-pending">Pending</td>
     <td>2025-05-25 03:18pm</td>
   </tr>
   <tr>
     <td>Blood Pressure Monitor</td>
     <td>Medical Hospital</td>
     <td>Calibration Error</td>
-    <td>Pending</td>
+    <td class="status-pending">Pending</td>
     <td>2025-05-08 10:10am</td>
   </tr>
   <tr>
     <td>Dell OptiPlex PC</td>
     <td>Library</td>
-    <td>In Progress</td>
     <td>Not Booting</td>
+    <td class="status-in-progress">In Progress</td>
     <td>2025-05-03 10:40am</td>
   </tr>
   <tr>
     <td>Library Security Gate</td>
     <td>Library</td>
-    <td>Beeping Continously</td>
-    <td>Resolved</td>
+    <td>Beeping Continuously</td>
+    <td class="status-resolved">Resolved</td>
     <td>2025-04-30 10:20am</td>
   </tr>
   <tr>
     <td>Scanner Canon DR-6010C</td>
     <td>Library</td>
     <td>Paper jam error</td>
-    <td>Pending</td>
+    <td class="status-pending">Pending</td>
     <td>2025-05-06 01:46pm</td>
   </tr>
   <tr>
     <td>Microscope</td>
     <td>Faculty of Medicine</td>
     <td>Broken lens</td>
-    <td>Resolved</td>
+    <td class="status-resolved">Resolved</td>
     <td>2025-05-03</td>
   </tr>
   <tr>
     <td>Whiteboard</td>
     <td>Faculty of Medicine</td>
     <td>Cannot Erase Properly</td>
-    <td>Resolved</td>
+    <td class="status-resolved">Resolved</td>
     <td>2025-05-02 03:00pm</td>
   </tr>
   <tr>
     <td>Smart Board Samsung</td>
-    <td>Faculty Of Computer Science</td>
-    <td>Screen FLickering</td>
-    <td>In Progress</td>
+    <td>Faculty of Computer Science</td>
+    <td>Screen Flickering</td>
+    <td class="status-in-progress">In Progress</td>
     <td>2025-05-01 04:20pm</td>
   </tr>
   <tr>
     <td>CISCO Router</td>
-    <td>Faculty Of Computer Science</td>
+    <td>Faculty of Computer Science</td>
     <td>Internet Signal</td>
-    <td>Pending</td>
+    <td class="status-pending">Pending</td>
     <td>2025-05-01 04:20pm</td>
   </tr>
   <tr>
     <td>3D Printer</td>
-    <td>Faculty Of Computer Science</td>
+    <td>Faculty of Computer Science</td>
     <td>Prints Failing Halfway</td>
-    <td>Pending</td>
+    <td class="status-pending">Pending</td>
     <td>2025-05-03 02:50pm</td>
   </tr>
   <tr>
     <td>VR Headset</td>
-    <td>Faculty Of Computer Science</td>
+    <td>Faculty of Computer Science</td>
     <td>Screen Blurry and Misaligned</td>
-    <td>In Progress</td>
+    <td class="status-in-progress">In Progress</td>
     <td>2025-05-06 08:30am</td>
   </tr>
 </table>
+
+</body>
+</html>
