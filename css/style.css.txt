@@ -1,0 +1,112 @@
+/* GENERAL PAGE STYLING */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  background-color: #f7f9fc;
+  color: #333;
+}
+
+h1, h2, h3 {
+  color: #004080;
+}
+
+h2 {
+  margin-top: 40px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+}
+
+h3 {
+  background-color: #e0e7f0;
+  padding: 10px;
+  margin-top: 30px;
+  border-left: 5px solid #004080;
+}
+
+/* TABLE STYLING */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+  background-color: #fff;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+th {
+  background-color: #004080;
+  color: white;
+}
+
+/* FORM STYLING */
+form {
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+
+form label {
+  font-weight: bold;
+}
+
+form input[type="text"],
+form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 6px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+form button {
+  background-color: #004080;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+form button:hover {
+  background-color: #003060;
+}
+
+/* RESPONSIVE LAYOUT */
+@media screen and (max-width: 768px) {
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  th {
+    position: absolute;
+    left: -9999px;
+  }
+
+  td {
+    border: none;
+    position: relative;
+    padding-left: 50%;
+    margin-bottom: 10px;
+  }
+
+  td::before {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+}
