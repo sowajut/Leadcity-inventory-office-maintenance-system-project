@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Maintenance Request</title>
+</head>
+<body>
+    <h1>Add Maintenance Request</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+          <li><strong>{{ category.title() }}:</strong> {{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('add_maintenance') }}">
+        <label>Item Name:</label>
+        <input type="text" name="item_name" required><br><br>
+
+        <label>Department:</label>
+        <input type="text" name="department" required><br><br>
+
+        <label>Issue:</label>
+        <input type="text" name="issue" required><br><br>
+
+        <label>Status:</label>
+        <select name="status">
+            <option value="Pending">Pending</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Resolved">Resolved</option>
+        </select><br><br>
+
+        <label>Date Reported:</label>
+        <input type="date" name="date_reported" required><br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <br><a href="{{ url_for('maintenance') }}">Back to Maintenance Page</a>
+</body>
+</html>

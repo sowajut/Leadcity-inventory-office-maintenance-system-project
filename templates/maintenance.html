@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Maintenance Management</title>
+  <style>
+    body {
+      background-color: #f9f9f9;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    nav a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    form {
+      margin: 20px 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 40px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #e0e0e0;
+    }
+
+    h1, h2, h3 {
+      margin-top: 30px;
+    }
+
+    button {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 4px;
+      background-color: #0077cc;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005fa3;
+    }
+
+    .print-button {
+      background-color: #4CAF50;
+      margin-top: 10px;
+    }
+
+    .action-buttons form {
+      display: inline;
+    }
+
+    .action-buttons a {
+      text-decoration: none;
+      color: white;
+      background-color: #ff9800;
+      padding: 5px 8px;
+      border-radius: 4px;
+      margin-right: 5px;
+    }
+
+    .action-buttons a:hover {
+      background-color: #e68a00;
+    }
+
+    .status-pending {
+      background-color: #fffefe;
+      color: #e80b0b;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .status-inprogress {
+      background-color: #fffeff;
+      color: #e9dc23;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+
+    .status-resolved {
+      background-color: #fffeff;
+      color: #155724;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header id="top">
+    <div class="logo-container">
+      <img src="static/css/log.jpg" alt="Lead City University Logo" class="logo" width="60" height="40" />
+      <h1>Lead City University</h1>
+    </div>
+    <nav>
+      <a href="/dashboard">Home</a>
+      <a href="/inventory">Inventory</a>
+      <a href="/maintenance">Maintenance</a>
+      <a href="/reports">View Reports</a>
+    </nav>
+<form method="GET">
+  <label for="department">Department:</label>
+  <input type="text" name="department" placeholder="e.g. Senate">
+
+  <label for="issue">Issue:</label>
+  <input type="text" name="issue" placeholder="e.g. Broken Chair">
+
+  <label for="status">Status:</label>
+  <select name="status">
+    <option value="">--All--</option>
+    <option value="Pending">Pending</option>
+    <option value="In Progress">In Progress</option>
+    <option value="Resolved">Resolved</option>
+  </select>
+
+  <button type="submit">Search</button>
+</form>
+
+
+  </header>
+<body>
+    <h1>Maintenance Requests</h1>
+
+    <a href="{{ url_for('add_maintenance') }}">
+        <button>Add Maintenance Request</button>
+    </a>
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+        {% for category, message in messages %}
+          <li><strong>{{ category.title() }}:</strong> {{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <h2>Existing Requests</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Item Name</th>
+            <th>Department</th>
+            <th>Issue</th>
+            <th>Status</th>
+            <th>Date Reported</th>
+            {% if session.role == 'admin' %}
+            <th>Actions</th>
+            {% endif %}
+        </tr>
+        {% for req in maintenance_requests %}
+        <tr>
+            <td>{{ req[0] }}</td>
+            <td>{{ req[1] }}</td>
+            <td>{{ req[2] }}</td>
+            <td>{{ req[3] }}</td>
+            <td>
+              {% if req[4] == 'Pending' %}
+                <span class="status-pending">{{ req[4] }}</span>
+              {% elif req[4] == 'In Progress' %}
+                <span class="status-inprogress">{{ req[4] }}</span>
+              {% elif req[4] == 'Resolved' %}
+                <span class="status-resolved">{{ req[4] }}</span>
+              {% else %}
+                {{ req[4] }}
+              {% endif %}
+            </td>
+            <td>{{ req[5] }}</td>
+            {% if session.role == 'admin' %}
+            <td>
+                <form method="POST" action="{{ url_for('delete_maintenance', req_id=req[0]) }}" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
+                <a href="{{ url_for('edit_maintenance', request_id=req[0]) }}">Edit</a>
+            </td>
+            {% endif %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <br><a href="{{ url_for('dashboard') }}">Back to Dashboard</a>
+</body>
+</html>

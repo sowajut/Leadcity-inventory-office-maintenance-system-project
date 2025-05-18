@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+    <h1>Welcome to Leadcity Inventory Office Management System</h1>
+
+    <h2>Welcome, {{ session['username'] }}! To The IOMS Dashboard</h2>
+    
+    <nav>
+        <a href="/inventory">Inventory</a> |
+        <a href="/maintenance">Maintenance</a> |
+        <a href="/logout">Logout</a>
+    </nav>
+
+    <section>
+        <p>Keep track of Leadcity university assets and maintenance issues in one place. Select a page from the navigation bar to proceed.</p>
+    </section>
+    <section class="features">
+      <h3>Features</h3>
+      <ul>
+        <li>View and manage inventory items</li>
+        <li>Submit and track maintenance requests</li>
+        <li>Check the status of maintenance issues</li>
+      </ul>
+    </section>
+    <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Lead City University. All rights reserved.</p>
+  </footer>
+</body>
+{% endblock %}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Item</title>
+          <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    form {
+      margin-bottom: 30px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 4px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Edit Inventory Item</h2>
+    <form method="POST">
+        <label>Item Name:</label>
+        <input type="text" name="item_name" value=""><br>
+
+        <label>Department:</label>
+        <input type="text" name="department" value=""><br>
+
+        <label>Quantity:</label>
+        <input type="number" name="quantity" value=""><br>
+
+        <label>Condition:</label>
+        <input type="text" name="condition" value=""><br>
+
+        <label>Location:</label>
+        <input type="text" name="location" value=""><br>
+
+        <button type="submit">Update</button>
+    </form>
+    <br>
+    <a href="/inventory">Back to Inventory</a>
+</body>
+</html>
