@@ -1,18 +1,74 @@
-{% extends "base.html" %}
+  <style>
+    form {
+      max-width: 400px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #a7a4a4;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
 
-{% block title %}Login Your Leadcity IOMS Account{% endblock %}
+    label {
+      display: block;
+      margin-bottom: 5px;
+      margin-top: 15px;
+      font-weight: 600;
+      color: #555;
+    }
 
-{% block content %}
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 3px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #2c3e50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1a252f;
+    }
+
+    p {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    a {
+      color: #2c3e50;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
   <h1>Login To Your Leadcity IOMS Profile</h1>
   <form method="post">
     <label for="username">Username</label>
-    <input type="text" name="username" required>
+    <input type="text" name="username" id="username" required>
 
     <label for="password">Password</label>
-    <input type="password" name="password" required>
+    <input type="password" name="password" id="password" required>
 
     <label for="role">Select Role:</label>
-    <select name="role" required>
+    <select name="role" id="role" required>
       <option value="user">User</option>
       <option value="admin">Admin</option>
     </select>
@@ -20,4 +76,4 @@
     <button type="submit">Login</button>
   </form>
   <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.</p>
-{% endblock %}
+
