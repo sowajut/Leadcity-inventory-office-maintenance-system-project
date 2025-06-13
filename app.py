@@ -136,7 +136,7 @@ def dashboard():
         return redirect(url_for("login"))
     return render_template("dashboard.html", username=session["username"], role=session["role"])
 
-# Inventory page - view and add (admins only can add)
+# Inventory page - view and add
 @app.route("/inventory", methods=["GET", "POST"])
 def inventory():
     if not is_logged_in():
@@ -147,9 +147,9 @@ def inventory():
     cursor = conn.cursor()
 
     if request.method == "POST":
-        if not is_admin():
-            flash("Admin privileges required to add inventory.", "error")
-            return redirect(url_for("inventory"))
+        # All logged-in users can now add
+        pass  # or remove this block entirely
+
 
         item_name = request.form["item_name"].strip()
         department = request.form["department"].strip()
@@ -183,9 +183,9 @@ def inventory():
 # Edit inventory item (admin only)
 @app.route("/edit_inventory/<int:item_id>", methods=["GET", "POST"])
 def edit_inventory(item_id):
-    if not is_logged_in() or not is_admin():
-        flash("Admin privileges required.", "error")
-        return redirect(url_for("inventory"))
+    if not is_logged_in():
+        flash("Please login first.", "error")
+        return redirect(url_for("login"))
     
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
@@ -223,9 +223,9 @@ def edit_inventory(item_id):
 # Delete inventory item (admin only)
 @app.route("/delete_inventory/<int:item_id>", methods=["POST"])
 def delete_inventory(item_id):
-    if not is_logged_in() or not is_admin():
-        flash("Admin privileges required.", "error")
-        return redirect(url_for("inventory"))
+    if not is_logged_in():
+        flash("Please login first.", "error")
+        return redirect(url_for("login"))
     
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
